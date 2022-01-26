@@ -12,7 +12,7 @@
   </a>
 </p> -->
 
-<p><img src="images/indent-jump-icon.png" width="100px" alt="Indent Jump Vscode"></p>
+<p><img src="images/indent-jump.png" width="100px" alt="Indent Jump Vscode"></p>
 
 ---
 
