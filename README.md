@@ -16,7 +16,7 @@
 
 ---
 
-[Indent Jump](https://github.com/aPinix/indent-jump-vscode) is an open source plugin for Vscode to move cursor and select contents between lines with the same indents.
+[Indent Jump](https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump) is an open source plugin for Vscode to move cursor and select contents between lines with the same indents.
 
 Inspired by [Indentation Level Movement](https://github.com/kaiwood/vscode-indentation-level-movement) plugin.
 
