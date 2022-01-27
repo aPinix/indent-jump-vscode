@@ -4,7 +4,24 @@
 	"description": "Move cursor and select contents between lines with the same indents.",
 	"version": "1.0.0",
 	"publisher": "aPinix",
+	"author": {
+    "name": "André Pinto",
+    "email": "a.pinix@gmail.com",
+    "url": "https://twitter.com/apinix"
+  },
 	"icon": "images/indent-jump-icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aPinix/indent-jump-vscode"
+	},
+	"bugs": "https://github.com/aPinix/indent-jump-vscode/issues",
+	"license": "MIT",
+	"keywords": [
+		"indent jump",
+		"vscode",
+		"extension",
+		"indentation"
+	],
 	"engines": {
 		"vscode": "^1.63.0"
 	},

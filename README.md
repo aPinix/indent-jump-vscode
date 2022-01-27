@@ -12,7 +12,7 @@
   </a>
 </p> -->
 
-<p><img src="images/indent-jump.png" width="100px" alt="Indent Jump Vscode"></p>
+<p><img src="images/indent-jump-icon.png" width="100px" alt="Indent Jump Vscode"></p>
 
 ---
 
@@ -20,7 +20,7 @@
 
 Inspired by [Indentation Level Movement](https://github.com/kaiwood/vscode-indentation-level-movement) plugin.
 
-![Indent Jump features for VS Code](images/indent-jump.gif?raw=true)
+![Indent Jump features for VS Code](images/indent-jump.gif)
 
 ## Features
 
