@@ -2,7 +2,7 @@
 	"name": "indent-jump",
 	"displayName": "Indent Jump",
 	"description": "Move cursor and select contents between lines with the same indents.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "aPinix",
 	"author": {
     "name": "André Pinto",
@@ -81,6 +81,8 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
+		"vscode:package": "vsce package",
+		"vscode:publish": "vsce publish",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
