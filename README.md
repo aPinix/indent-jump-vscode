@@ -1,16 +1,16 @@
 # Indent Jump
 
-<!-- <p>
-  <a href="https://marketplace.visualstudio.com/items?itemName=softwaredotcom.indent-jump-vscode">
-    <img alt="Indent Jump in the VS Code Marketplace" src="https://vsmarketplacebadge.apphb.com/version-short/softwaredotcom.indent-jump-vscode.svg?style=flat-square&color=00b4ee&label=marketplace">
+<p>
+  <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
+    <img alt="Indent Jump in the VS Code Marketplace" src="https://vsmarketplacebadge.apphb.com/version-short/apinix.indent-jump-vscode.svg?style=flat-square&color=00b4ee&label=marketplace">
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=softwaredotcom.indent-jump-vscode">
-    <img alt="Indent Jump Installs" src="https://vsmarketplacebadge.apphb.com/installs-short/softwaredotcom.indent-jump-vscode.svg?style=flat-square&color=00b4ee">
+  <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
+    <img alt="Indent Jump Downloads" src="https://vsmarketplacebadge.apphb.com/downloads-short/apinix.indent-jump.svg?style=flat-square&color=00b4ee&label=marketplace">
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=softwaredotcom.indent-jump-vscode">
-    <img alt="Indent Jump Rating" src="https://vsmarketplacebadge.apphb.com/rating-short/softwaredotcom.indent-jump-vscode.svg?style=flat-square&color=00b4ee">
-  </a>
-</p> -->
+  <!-- <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
+    <img alt="Indent Jump Rating" src="https://vsmarketplacebadge.apphb.com/rating-star/apinix.indent-jump.svg?style=flat-square&color=00b4ee&label=marketplace">
+  </a> -->
+</p>
 
 <p><img src="images/indent-jump-icon.png" width="100px" alt="Indent Jump Vscode"></p>
 
