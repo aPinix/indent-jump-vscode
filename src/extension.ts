@@ -5,15 +5,15 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  const editor = vscode.window.activeTextEditor;
-
   const moveUp = vscode.commands.registerCommand('indent-jump.moveUp', () => {
+    const editor = vscode.window.activeTextEditor; // has to be on all functions to catch the current active text editor
     if (editor) {
       new IndentJumpMover(editor).moveUp();
     }
   });
 
   const moveDown = vscode.commands.registerCommand('indent-jump.moveDown', () => {
+    const editor = vscode.window.activeTextEditor; // has to be on all functions to catch the current active text editor
     if (editor) {
       new IndentJumpMover(editor).moveDown();
     }
@@ -26,12 +26,14 @@ export function activate(context: vscode.ExtensionContext) {
   // });
 
   const selectUp = vscode.commands.registerCommand('indent-jump.selectUp', () => {
+    const editor = vscode.window.activeTextEditor; // has to be on all functions to catch the current active text editor
     if (editor) {
       new IndentJumpMover(editor).selectUp();
     }
   });
 
   const selectDown = vscode.commands.registerCommand('indent-jump.selectDown', () => {
+    const editor = vscode.window.activeTextEditor; // has to be on all functions to catch the current active text editor
     if (editor) {
       new IndentJumpMover(editor).selectDown();
     }
