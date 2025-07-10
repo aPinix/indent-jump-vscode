@@ -2,14 +2,11 @@
 
 <p>
   <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
-    <img alt="Indent Jump in the VS Code Marketplace" src="https://vsmarketplacebadge.apphb.com/version-short/apinix.indent-jump-vscode.svg?style=flat-square&color=00b4ee&label=marketplace">
+    <img alt="Indent Jump in the VS Code Marketplace" src="https://vsmarketplacebadges.dev/version-short/apinix.indent-jump-vscode.png?style=flat-square&color=00b4ee&label=marketplace">
   </a>
   <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
-    <img alt="Indent Jump Downloads" src="https://vsmarketplacebadge.apphb.com/downloads-short/apinix.indent-jump.svg?style=flat-square&color=00b4ee&label=marketplace">
+    <img alt="Indent Jump Downloads" src="https://vsmarketplacebadges.dev/downloads-short/apinix.indent-jump.png?style=flat-square&color=00b4ee&label=marketplace">
   </a>
-  <!-- <a href="https://marketplace.visualstudio.com/items?itemName=aPinix.indent-jump">
-    <img alt="Indent Jump Rating" src="https://vsmarketplacebadge.apphb.com/rating-star/apinix.indent-jump.svg?style=flat-square&color=00b4ee&label=marketplace">
-  </a> -->
 </p>
 
 <p><img src="images/indent-jump-icon.png" width="100px" alt="Indent Jump Vscode"></p>

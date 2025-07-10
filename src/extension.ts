@@ -60,19 +60,37 @@ class IndentJumpMover {
   }
 
   public moveUp() {
-    let currentLineNumber = this.editor.selection.active.line;
-    let currentLevel = this.indentJumpForLine(currentLineNumber);
-    let nextLine = this.findPreviousLine(currentLineNumber, currentLevel);
+    const newSelections = this.editor.selections.map((selection) => {
+      let currentLineNumber = selection.active.line;
+      let currentLevel = this.indentJumpForLine(currentLineNumber);
+      let nextLine = this.findPreviousLine(currentLineNumber, currentLevel);
 
-    this.move(nextLine);
+      let currentCharacter = selection.anchor.character;
+      let position = selection.active;
+      let newPosition = position.with(nextLine, currentCharacter);
+
+      return new vscode.Selection(newPosition, newPosition);
+    });
+
+    this.editor.selections = newSelections;
+    this.revealSelections(newSelections);
   }
 
   public moveDown() {
-    let currentLineNumber = this.editor.selection.active.line;
-    let currentLevel = this.indentJumpForLine(currentLineNumber);
-    let nextLine = this.findNextLine(currentLineNumber, currentLevel);
+    const newSelections = this.editor.selections.map((selection) => {
+      let currentLineNumber = selection.active.line;
+      let currentLevel = this.indentJumpForLine(currentLineNumber);
+      let nextLine = this.findNextLine(currentLineNumber, currentLevel);
 
-    this.move(nextLine);
+      let currentCharacter = selection.anchor.character;
+      let position = selection.active;
+      let newPosition = position.with(nextLine, currentCharacter);
+
+      return new vscode.Selection(newPosition, newPosition);
+    });
+
+    this.editor.selections = newSelections;
+    this.revealSelections(newSelections);
   }
 
   // public moveRight() {
@@ -94,27 +112,46 @@ class IndentJumpMover {
   // }
 
   public selectUp() {
-    let startPoint = this.editor.selection.anchor;
-    this.moveUp();
-    let endPoint = this.editor.selection.active;
-    this.editor.selection = new vscode.Selection(startPoint, endPoint);
+    const newSelections = this.editor.selections.map((selection) => {
+      let startPoint = selection.anchor;
+      let currentLineNumber = selection.active.line;
+      let currentLevel = this.indentJumpForLine(currentLineNumber);
+      let nextLine = this.findPreviousLine(currentLineNumber, currentLevel);
+
+      let currentCharacter = selection.anchor.character;
+      let position = selection.active;
+      let newPosition = position.with(nextLine, currentCharacter);
+
+      return new vscode.Selection(startPoint, newPosition);
+    });
+
+    this.editor.selections = newSelections;
+    this.revealSelections(newSelections);
   }
 
   public selectDown() {
-    let startPoint = this.editor.selection.anchor;
-    this.moveDown();
-    let endPoint = this.editor.selection.active;
-    this.editor.selection = new vscode.Selection(startPoint, endPoint);
+    const newSelections = this.editor.selections.map((selection) => {
+      let startPoint = selection.anchor;
+      let currentLineNumber = selection.active.line;
+      let currentLevel = this.indentJumpForLine(currentLineNumber);
+      let nextLine = this.findNextLine(currentLineNumber, currentLevel);
+
+      let currentCharacter = selection.anchor.character;
+      let position = selection.active;
+      let newPosition = position.with(nextLine, currentCharacter);
+
+      return new vscode.Selection(startPoint, newPosition);
+    });
+
+    this.editor.selections = newSelections;
+    this.revealSelections(newSelections);
   }
 
-  private move(toLine: number | undefined) {
-    let currentCharacter = this.editor.selection.anchor.character;
-    let position = this.editor.selection.active;
-    let newPosition = position.with(toLine, currentCharacter);
-    let selection = new vscode.Selection(newPosition, newPosition);
-
-    this.editor.selection = selection;
-    this.editor.revealRange(new vscode.Range(newPosition, newPosition));
+  private revealSelections(selections: vscode.Selection[]) {
+    // Reveal the first selection to keep the viewport focused
+    if (selections.length > 0) {
+      this.editor.revealRange(new vscode.Range(selections[0].active, selections[0].active));
+    }
   }
 
   private indentJumpForLine(lineToCheck: number) {
@@ -130,78 +167,46 @@ class IndentJumpMover {
   private findNextLine(currentLineNumber: number, currentIndentJump: number) {
     const endLineNumber = this.editor.document.lineCount - 1;
     if (currentLineNumber === endLineNumber) {
-      return;
+      return currentLineNumber;
     }
     const nextLineNumber = currentLineNumber + 1;
-    const jumpingOverSpace =
-      this.indentJumpForLine(nextLineNumber) !== currentIndentJump ||
-      this.emptyLine(nextLineNumber);
+    const jumpingOverSpace = this.indentJumpForLine(nextLineNumber) !== currentIndentJump || this.emptyLine(nextLineNumber);
 
     for (let lineNumber = nextLineNumber; lineNumber <= endLineNumber; lineNumber++) {
       let indentationForLine = this.indentJumpForLine(lineNumber);
 
-      if (
-        jumpingOverSpace &&
-        indentationForLine === currentIndentJump &&
-        !this.emptyLine(lineNumber)
-      ) {
+      if (jumpingOverSpace && indentationForLine === currentIndentJump && !this.emptyLine(lineNumber)) {
         return lineNumber;
-      } else if (
-        !jumpingOverSpace &&
-        (
-					indentationForLine !== currentIndentJump ||
-					this.emptyLine(lineNumber)
-				)
-      ) {
+      } else if (!jumpingOverSpace && (indentationForLine !== currentIndentJump || this.emptyLine(lineNumber))) {
         return lineNumber - 1;
-      } else if (
-        !jumpingOverSpace &&
-        indentationForLine === currentIndentJump &&
-        lineNumber === endLineNumber
-      ) {
+      } else if (!jumpingOverSpace && indentationForLine === currentIndentJump && lineNumber === endLineNumber) {
         return lineNumber;
       }
     }
 
-    return;
+    return currentLineNumber;
   }
 
   private findPreviousLine(currentLineNumber: number, currentIndentJump: number) {
     if (currentLineNumber === 0) {
-      return;
+      return currentLineNumber;
     }
 
     const previousLineNumber = currentLineNumber - 1;
-    const jumpingOverSpace =
-      this.indentJumpForLine(previousLineNumber) !== currentIndentJump ||
-      this.emptyLine(previousLineNumber);
+    const jumpingOverSpace = this.indentJumpForLine(previousLineNumber) !== currentIndentJump || this.emptyLine(previousLineNumber);
 
     for (let lineNumber = previousLineNumber; lineNumber >= 0; lineNumber--) {
       let indentationForLine = this.indentJumpForLine(lineNumber);
 
-      if (
-        jumpingOverSpace &&
-        indentationForLine === currentIndentJump &&
-        !this.emptyLine(lineNumber)
-      ) {
+      if (jumpingOverSpace && indentationForLine === currentIndentJump && !this.emptyLine(lineNumber)) {
         return lineNumber;
-      } else if (
-        !jumpingOverSpace &&
-        (
-					indentationForLine !== currentIndentJump ||
-					this.emptyLine(lineNumber)
-				)
-      ) {
+      } else if (!jumpingOverSpace && (indentationForLine !== currentIndentJump || this.emptyLine(lineNumber))) {
         return lineNumber + 1;
-      } else if (
-        !jumpingOverSpace &&
-        indentationForLine === currentIndentJump &&
-        lineNumber === 0
-      ) {
+      } else if (!jumpingOverSpace && indentationForLine === currentIndentJump && lineNumber === 0) {
         return lineNumber;
       }
     }
-    return;
+    return currentLineNumber;
   }
 
   dispose() {}
